@@ -1,4 +1,4 @@
-Scraper that gets all of the email addresses of Hacker School batch 9, except those of the staff/facilitators, and saves them to a file (emails.txt). 
+Scraper that gets all of the email addresses of the specified Hacker School batch, except those of the staff/facilitators, and saves them to a file (emails.txt). 
 
 Uses the Beautiful Soup HTML parser. 
 

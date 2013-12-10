@@ -7,6 +7,7 @@ import base64
 
 email = input('Email: ')
 password = input('Password: ')
+batch = input('Batch number: ')
 
 s = requests.Session()
 login = BeautifulSoup(s.get('https://www.hackerschool.com/login').text)
@@ -14,7 +15,7 @@ authenticity_token = login.find('input', attrs={"name": "authenticity_token"})['
 s.post('https://www.hackerschool.com/sessions', {'utf8': '\xe2\x9c\x93',
     'authenticity_token': authenticity_token, 'email': email, 'password': password})
 soup = BeautifulSoup(s.get('https://www.hackerschool.com/people').text)
-batch = soup.find(id='batch9')
+batch = soup.find(id='batch'+str(batch))
 
 emails = []
 
@@ -25,10 +26,8 @@ for link in links:
         email = link.get('href')[start_index:]
         if email.find('@hackerschool.com') == -1:
             emails.append(email)
-                
 
 with open('emails.txt', 'w') as f: 
-    for email in emails: 
-        f.write(email + '\n')
+    [f.write(email + '\n') for email in emails]
 
 
